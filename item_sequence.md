@@ -38,7 +38,7 @@ sequenceDiagram
         Ctrl->>Inv: 아이템추가(아이템객체)
         activate Inv
         
-        alt 인벤토리 >= 최대용량(10)
+        alt 아이템리스트 크기 >= 최대용량(10)
             Inv-->>Ctrl: 추가 실패 (인벤토리 가득 참)
             Ctrl-->>UI: 실패 ("인벤토리가 가득 찼습니다.")
         else 인벤토리 여유 있음
