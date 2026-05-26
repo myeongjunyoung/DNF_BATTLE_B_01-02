@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     autonumber
     actor Player as 플레이어
@@ -51,3 +52,4 @@ sequenceDiagram
     
     deactivate Ctrl
     deactivate UI
+```
