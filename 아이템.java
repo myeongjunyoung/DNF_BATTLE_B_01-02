@@ -1,0 +1,15 @@
+package dnf;
+
+public class 아이템 {
+  private String 아이템명;
+  private String 타입;
+  private int 가치;
+  private String 등급;
+
+  public 아이템(String 아이템명, String 타입, int 가치, String 등급) {
+    this.아이템명 = 아이템명;
+    this.타입 = 타입;
+    this.가치 = 가치;
+    this.등급 = 등급;
+  }
+}

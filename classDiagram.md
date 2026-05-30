@@ -3,24 +3,28 @@ classDiagram
     %% UI (Boundary) 클래스
     class Create_Character_UI {
         <<boundary>>
-        +캐릭터생성화면() void
+        +캐릭터생성화면(전투 전투서비스, String 플레이어id, String 캐릭터명, String 직업, int 레벨) void
     }
     class Attack_Monster_UI {
         <<boundary>>
-        +몬스터공격화면() void
+        +몬스터공격화면(전투 전투서비스, String 플레이어id) void
     }
     class Add_Item_UI {
         <<boundary>>
+        +아이템획득화면(전투 전투서비스, String 플레이어id, String 아이템명, String 타입, int 가치) void
     }
     class Join_Guild_UI {
         <<boundary>>
+        +길드가입화면(전투 전투서비스, String 플레이어id, String 길드명) void
     }
 
     %% 제어 클래스
     class 전투 {
-        +캐릭터생성(String 플레이어id, String 캐릭터명, String 직업, int 레벨) void
+        -플레이어 플레이어객체
+        -캐릭터 캐릭터
+        +Map~String, 길드~ 길드저장소
+        +캐릭터생성(String 플레이어id, String 캐릭터명, String 직업, int 레벨) boolean
         +몬스터공격(String 플레이어id) String
-        +등급판정(double 데미지) String
         +아이템획득(String 플레이어id, String 아이템명, String 아이템타입, int 아이템가치) void
         +길드가입(String 플레이어id, String 길드명) void
     }
@@ -60,14 +64,14 @@ classDiagram
     class 인벤토리 {
         -List~아이템~ 아이템리스트
         -int 최대용량
-        +아이템추가(아이템 아이템객체) void
+        +아이템추가(아이템 아이템객체) boolean
     }
 
     class 길드 {
         -String 길드명
         -List~캐릭터~ 캐릭터리스트
         -int 최대인원
-        +캐릭터가입(캐릭터 캐릭터객체) void
+        +캐릭터가입(캐릭터 캐릭터객체) boolean
     }
 
     %% 의존성 (Dependency) - uses 관계
@@ -78,6 +82,9 @@ classDiagram
 
     전투 ..> 플레이어 : uses
     전투 ..> 캐릭터 : uses
+    전투 ..> 인벤토리 : uses
+    전투 ..> 아이템 : uses
+    전투 ..> 길드 : uses
 
     %% 상속 관계 (Generalization)
     캐릭터 <|-- 전사
